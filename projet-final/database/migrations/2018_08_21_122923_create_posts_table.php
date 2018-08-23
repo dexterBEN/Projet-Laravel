@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->text('description');//Peut être nullable
             $table->string('date_début', 100);//Peut être nullable
             $table->string('date_fin', 100);//Peut être nullable
-            $table->decimal('price', 7, 2);//Le 2 après la virgule signifie que l'on à deux chiffre après la virgule (Peut être nullable)
+            $table->unsignedDecimal('price', 6, 2);//Le 2 après la virgule signifie que l'on à deux chiffre après la virgule (Peut être nullable)
             $table->smallInteger('maxStudent');
             $table->timestamps();
         });
