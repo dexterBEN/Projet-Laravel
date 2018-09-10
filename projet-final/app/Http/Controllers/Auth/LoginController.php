@@ -36,4 +36,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    /*Permet de forcer la re-direction vers dashboard*/
+    protected function redirectTo(){
+        return '/admin/post';
+    }
+
+    public function showLoginForm(){
+        return view('auth.login');
+    }
 }
