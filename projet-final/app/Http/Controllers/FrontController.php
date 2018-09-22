@@ -29,35 +29,32 @@ class FrontController extends Controller
         return view('front.show', ['post'=> $post]);
     }
 
+    //Affiche la liste des formations disponible
     public function showFormations(){
         
-        $posts = Post::where('post_type', 'formation')->paginate($this->paginate);
+        $posts = Post::where('post_type', 'formation')
+                        ->where('status', 'published')->paginate($this->paginate);//Effectue une pagination uniquement sur le post publier
         
         return view('front.formations', ['posts'=> $posts]);
-
-        /*$type = DB::selectOne("SHOW COLUMNS FROM `posts` WHERE Field = 'post_type'")->Type;
-        preg_match("/(formation)/", $type, $matches);
-        $first = $matches[1];*/
-    
-        //dump($first);
     }
 
     public function showStages(){
-        $posts = Post::where('post_type', 'stage')->paginate($this->paginate);
+        $posts = Post::where('post_type', 'stage')
+                        ->where('status', 'published')->paginate($this->paginate);
 
         return view('front.stages', ['posts'=>$posts]);
     }
 
+    //Affiche la vue du formulaire de contact
     public function showContactForm(){
         return view('front.contact');
     }
 
+    //Affiche la vue avec les résultats de la recherche
     public function showResearch(Request $request){
-
-        // dd($request->search); // die avec vardump Laravel
-        $query = $request->search;
-
+        
         // Ici la requête permet de faire une recherche sur les différents champs de la table posts
+        $query = $request->search;
         $posts = Post::where('title', 'LIKE', '%' . $query . '%')
             ->orWhere('description', 'LIKE', '%' . $query . '%')
             ->orWhere('post_type', 'LIKE', '%' . $query . '%')
