@@ -17,6 +17,7 @@ class Post extends Model
         'price',
         'maxStudent',
         'category_id',
+        'status'
         
     ];
 
