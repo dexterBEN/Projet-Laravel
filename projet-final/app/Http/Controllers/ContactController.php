@@ -22,7 +22,7 @@ class ContactController extends Controller
         */
         Mail::to('admin@admin.fr')->send(new ContactMessageCreated($request->name, $request->email, $request->msg));
 
-        //redirect()->back()->with('flash_message', 'Thank you for your message.');
+        redirect()->back()->with('flash_message', 'Votre message a bien été envoyé.');
         return redirect()->route('contact');//Une fois la requête réalisé on reste sur le formulaire de contacte
     }
 }
