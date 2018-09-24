@@ -18,7 +18,7 @@ class CreateCategoryPostTable extends Migration
             $table->unsignedInteger('post_id')->nullable();
             $table->foreign('post_id')->references('id')->on('posts');
             $table->unsignedInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,12 +31,5 @@ class CreateCategoryPostTable extends Migration
     public function down()
     {
         Schema::dropIfExists('category_post');
-
-        /*Schema::table('posts', function (Blueprint $table) {
-            $table->foreign('category_post_category_id_foreign');
-            $table->dropColumn('category_id');
-            $table->dropForeign('category_post_post_id_foreign');
-            $table->dropColumn('post_id');   
-        });*/
     }
 }

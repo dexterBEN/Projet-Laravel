@@ -15,13 +15,14 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('post_type', ['stage', 'formation', 'indéfinie']);//Liste de string définis
+            $table->enum('post_type', ['stage', 'formation']);//Liste de string définis
             $table->string('title', 100);
-            $table->text('description');//Peut être nullable
-            $table->string('date_début', 100);//Peut être nullable
-            $table->string('date_fin', 100);//Peut être nullable
-            $table->unsignedDecimal('price', 6, 2);//Le 2 après la virgule signifie que l'on à deux chiffre après la virgule (Peut être nullable)
-            $table->smallInteger('maxStudent');
+            $table->text('description')->nullable();//Peut être nullable
+            $table->dateTime('date_début')->nullable();//Peut être nullable
+            $table->dateTime('date_fin')->nullable();//Peut être nullable
+            $table->unsignedDecimal('price', 6, 2)->nullable();//Le 2 après la virgule signifie que l'on à deux chiffre après la virgule (Peut être nullable)
+            $table->smallInteger('maxStudent')->nullable();
+            $table->enum('status', ['published', 'unpublished'])->default('unpublished');
             $table->timestamps();
         });
     }
