@@ -98,7 +98,7 @@
               </div>
             </div>
 
-            <div class="input-file mt-5">
+            <div class="input-file mt-4">
               <input type="file" class="custom-file" name="picture">
               @if($errors->has('picture'))
                 <span>{{$errors->first('picture')}}</span>
