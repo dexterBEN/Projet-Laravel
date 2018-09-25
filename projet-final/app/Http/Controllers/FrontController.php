@@ -33,14 +33,14 @@ class FrontController extends Controller
     public function showFormations(){
         
         $posts = Post::where('post_type', 'formation')
-                        ->where('status', 'published')->paginate($this->paginate);//Effectue une pagination uniquement sur le post publier
+                        ->where('status', 'published')->orderBy('created_at', 'desc')->paginate($this->paginate);//Effectue une pagination uniquement sur le post publier
         
         return view('front.formations', ['posts'=> $posts]);
     }
 
     public function showStages(){
         $posts = Post::where('post_type', 'stage')
-                        ->where('status', 'published')->paginate($this->paginate);
+                        ->where('status', 'published')->orderBy('created_at', 'desc')->paginate($this->paginate);
 
         return view('front.stages', ['posts'=>$posts]);
     }
