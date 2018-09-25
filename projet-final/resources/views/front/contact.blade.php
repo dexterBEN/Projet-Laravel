@@ -21,7 +21,13 @@
 
         <div class="form-group">
           <button type="submit" class="btn btn-primary">Submit</button>
-        <div>
+        </div>
+        
+        @if(session()->has('flash_message'))
+          <div class="alert alert-success">
+            {{ session()->get('flash_message') }}
+          </div>
+        @endif
     </form>
   </section>
 @endsection
