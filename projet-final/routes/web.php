@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\ContactMessageCreated;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,10 +12,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
 
 Auth::routes();
 
@@ -27,6 +25,17 @@ Route::get('formations', 'FrontController@showFormations')->name('formations')->
 
 Route::get('stages', 'FrontController@showStages')->name('stages')->where(['id'=>'[0-9]+']);
 
-Route::get('contact', 'FrontController@showContactForm')->name('contact');
-
+//Route permettant l'accès au back-office sécurisé grâce au middleware
 Route::resource('admin/post', 'PostController')->middleware('auth');
+
+
+//Routes pour l'envoie d'email:
+
+Route::get('contact', 'ContactController@create')->name('contact');
+
+Route::post('contact', 'ContactController@store');
+
+//Route test pour voir le rendue du mail envoyer:
+Route::get('/test-mail', function(){
+    return new ContactMessageCreated('john','admin@admin.fr', 'Good morning');
+});
