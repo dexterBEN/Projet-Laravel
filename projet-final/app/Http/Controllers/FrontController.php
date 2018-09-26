@@ -60,6 +60,9 @@ class FrontController extends Controller
             ->orWhere('post_type', 'LIKE', '%' . $query . '%')
             ->paginate(5);
 
+        //Pagine correctement les résultats de recherche voir: https://www.youtube.com/watch?v=OlPw0ikdu8k
+        $posts->appends($request->only('search'));
+
         return view('front.search', ['posts' => $posts]); 
 
     }

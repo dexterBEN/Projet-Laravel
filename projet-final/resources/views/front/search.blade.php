@@ -5,6 +5,7 @@
     <h1>Voici le(s) résultat(s) de la recherche:</h1>
 
     <div>
+      {{$posts->links()}}
       <ul>
         @forelse($posts as $post)
           <li class="list-group-item">
@@ -31,6 +32,7 @@
         @empty
         @endforelse
       </ul>
+      {{$posts->links()}}
     </div>
   </section>
 @endsection
